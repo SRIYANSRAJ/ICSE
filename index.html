@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sriyans' Futuristic ICSE Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3cradialGradient id='grad1' cx='50%25' cy='50%25' r='50%25'%3e%3cstop offset='0%25' style='stop-color:%2300f5ff;stop-opacity:1' /%3e%3cstop offset='50%25' style='stop-color:%23ff0080;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%239d4edd;stop-opacity:1' /%3e%3c/radialGradient%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad1)' stroke='%2300f5ff' stroke-width='2' opacity='0.9'/%3e%3ctext x='50' y='60' font-family='monospace' font-size='40' font-weight='bold' text-anchor='middle' fill='%23ffffff' text-shadow='0 0 10px %2300f5ff'%3eS%3c/text%3e%3c/svg%3e">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-neon: #00f5ff;
+      --secondary-neon: #ff0080;
+      --accent-neon: #39ff14;
+      --purple-glow: #9d4edd;
+      --gold-glow: #ffd700;
+      --dark-bg: #0a0a0f;
+      --card-bg: rgba(15, 15, 30, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Exo 2', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
+      background-attachment: fixed;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--primary-neon), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--secondary-neon), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--accent-neon), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--purple-glow), transparent),
+        radial-gradient(2px 2px at 160px 30px, var(--gold-glow), transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: particleFloat 20s linear infinite;
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    @keyframes particleFloat {
+      0% { transform: translateY(0px) translateX(0px); }
+      33% { transform: translateY(-800px) translateX(100px); }
+      66% { transform: translateY(-1600px) translateX(-100px); }
+      100% { transform: translateY(-2400px) translateX(0px); }
+    }
+    
+    header {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1));
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+      animation: headerSweep 8s linear infinite;
+    }
+    
+    @keyframes headerSweep {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon), var(--accent-neon));
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    header p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .quote {
+      text-align: center;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 300;
+      background: linear-gradient(45deg, var(--accent-neon), var(--gold-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 3rem auto;
+      max-width: 800px;
+      padding: 0 2rem;
+      text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+      position: relative;
+    }
+    
+    .quote::before, .quote::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
+      top: 50%;
+    }
+    
+    .quote::before { left: -80px; }
+    .quote::after { right: -80px; }
+    
+    section {
+      margin: 3rem auto;
+      max-width: 1000px;
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 2.5rem;
+      box-shadow: 
+        0 0 50px rgba(0, 245, 255, 0.1),
+        inset 0 0 50px rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      position: relative;
+      backdrop-filter: blur(15px);
+      transition: all 0.4s ease;
+    }
+    
+    section:hover {
+      transform: translateY(-10px);
+      box-shadow: 
+        0 20px 60px rgba(0, 245, 255, 0.2),
+        inset 0 0 50px rgba(255, 255, 255, 0.05);
+      border-color: rgba(0, 245, 255, 0.4);
+    }
+    
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-neon), var(--secondary-neon), transparent);
+      border-radius: 25px 25px 0 0;
+    }
+    
+    section h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--secondary-neon), var(--purple-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 20px rgba(247, 37, 133, 0.3);
+      position: relative;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary-neon), transparent);
+      border-radius: 2px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+    
+    li {
+      margin: 0;
+    }
+    
+    a {
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.8), rgba(99, 102, 241, 0.8));
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(67, 97, 238, 0.3);
+      backdrop-filter: blur(10px);
+      font-weight: 500;
+    }
+    
+    a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    a:hover::before {
+      left: 100%;
+    }
+    
+    a:hover {
+      background: linear-gradient(135deg, rgba(114, 9, 183, 0.9), rgba(86, 11, 173, 0.9));
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        0 10px 30px rgba(114, 9, 183, 0.3),
+        0 0 20px rgba(157, 78, 221, 0.2);
+      border-color: rgba(157, 78, 221, 0.5);
+    }
+    
+    a:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
+    .about {
+      text-align: center;
+      margin: 4rem auto;
+      max-width: 900px;
+      background: linear-gradient(135deg, var(--glass-bg), rgba(157, 78, 221, 0.1));
+      padding: 3rem 2rem;
+      border-radius: 25px;
+      box-shadow: 
+        0 0 60px rgba(157, 78, 221, 0.2),
+        inset 0 0 60px rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(157, 78, 221, 0.3);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+    
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--purple-glow), var(--gold-glow), var(--primary-neon));
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0.3;
+      animation: borderGlow 4s linear infinite;
+    }
+    
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+    
+    .about h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--gold-glow), var(--accent-neon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+    
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.8));
+      margin-top: 4rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(0, 245, 255, 0.2);
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+    }
+    
+    footer a {
+      background: linear-gradient(45deg, var(--gold-glow), var(--accent-neon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+    }
+    
+    footer a:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      background: none;
+      box-shadow: none;
+    }
+    
+    footer p {
+      margin: 0.5rem 0;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      section {
+        margin: 2rem 1rem;
+        padding: 2rem 1.5rem;
+      }
+      
+      .quote::before, .quote::after {
+        display: none;
+      }
+      
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      .about {
+        margin: 3rem 1rem;
+        padding: 2rem 1.5rem;
+      }
+    }
+    
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    section {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Glow effects on scroll */
+    section:nth-child(even) {
+      animation-delay: 0.2s;
+    }
+    
+    section:nth-child(odd) {
+      animation-delay: 0.4s;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sriyans' Futuristic ICSE Notes</h1>
+    <p>View the mindmap from the <strong>Studio Section (purple icon)</strong></p>
+  </header>
+  
+  <div class="quote">"Students are not born toppers, they become one through focus, persistence, and smart effort."</div>
+
+  <section>
+    <h2>English Literature</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/d9400a02-c0c1-419c-83b3-a9b36eb794ba" target="_blank">Julius Caesar</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/64adfff4-a931-4dfb-b647-b2f0a4efc7f9" target="_blank">Treasure Chest - Short Poems</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/7f0d0e47-a1cf-484d-9609-1aba55c5db40" target="_blank">Treasure Chest - Short Stories</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Biology</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/ccc27d91-2604-43d5-8892-911710c42944" target="_blank">Endocrine System</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/0fdbab93-66b9-45e1-adb9-e3ce2822c2fa" target="_blank">Chemical Coordination in Plants</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/92b2f911-a2ad-444c-9466-8e66eaf75d08" target="_blank">Transpiration</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/450ff26f-689d-4a12-8913-757b52553550" target="_blank">Photosynthesis</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/06ff423d-52cd-49c2-a007-140b1c614733" target="_blank">Evolution</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/f8173a27-ca57-4564-948a-2677f1af3893" target="_blank">Pollution - Sources and Effects</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/a2bbccf4-b485-4b62-a5d6-b7c6e5c9a3f0" target="_blank">Absorption by Roots</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/e48e37fa-7b90-4ca9-ba07-c844cf52869f" target="_blank">Cell Cycle and Division</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/c0bdf323-afa4-412f-ba24-b6679f805b35" target="_blank">Chromosomes</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/c172d5d8-bfa3-4e95-98e5-413ecd44b8a5" target="_blank">Genetics</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Chemistry</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/52ffed4d-cfee-4168-9a02-a0d3a8561c7c" target="_blank">Periodic Properties and Variations</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/b6086cb8-2d3c-4184-9e3b-d62219dddf82" target="_blank">Analytical Chemistry</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Physics</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/a2b0d58b-f7b1-482b-885a-39fd324ef652" target="_blank">Light</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>History & Civics</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/df0d9c40-9254-41a4-9cf3-7e00cdb3cf58" target="_blank">Gandhian Era</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/bac1e8e2-09c9-4e5d-8a19-c8e96a005c03" target="_blank">Civics</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/9ce14ce2-4c5b-429d-832e-ea4b0b8cf078" target="_blank">History and Civics PYQ</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Geography</h2>
+    <ul>
+      <li><a href="https://notebooklm.google.com/notebook/4c98bcaa-5094-4a36-96a4-55c31635cc54" target="_blank">Mineral Resources in India</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/2cbd8993-15fb-4fcc-82a7-a802aa8fa5a2" target="_blank">Water Resources and Irrigation</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/e68f4579-bf76-4a70-96ee-774d64c57cb8" target="_blank">Natural Vegetation</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/da1989e8-3b3a-4e90-a3fb-587af23e1291" target="_blank">Soil Resources</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/eb48ba83-6143-406a-b31e-b8b5b087f778" target="_blank">Agriculture</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/0f5346b2-3e64-4c63-8293-936900ec1454" target="_blank">Conventional and Non-Conventional Sources of Energy</a></li>
+      <li><a href="https://notebooklm.google.com/notebook/8124f1cc-8f5d-46a5-b1b8-947df6b17651" target="_blank">Climate of India</a></li>
+    </ul>
+  </section>
+
+  <div class="about">
+    <h2>About Sriyans</h2>
+    <p>These ICSE notes are curated and organized by <strong>Sriyans</strong>, a passionate learner and innovator. With futuristic design and structured clarity, this platform reflects his dedication to making learning smarter, interactive, and enjoyable. 🌟</p>
+  </div>
+
+  <footer>
+    <p>Contact: <a href="mailto:sriyansraj02@gmail.com">sriyansraj02@gmail.com</a></p>
+    <p>© 2025 Sriyans. All rights reserved.</p>
+  </footer>
+</body>
+</html>
