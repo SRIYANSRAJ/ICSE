@@ -22,7 +22,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📧 Contact
 For any queries or suggestions:  
-📩 Email: **sriyans@example.com**
+📩 Email: **sriyansraj02@gmail.com**
 
 ---
 ⭐ If you like this project, don’t forget to give it a star on GitHub!
