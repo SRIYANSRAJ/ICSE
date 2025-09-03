@@ -3,70 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sriyans' Futuristic ICSE Notes</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3cradialGradient id='grad1' cx='50%25' cy='50%25' r='50%25'%3e%3cstop offset='0%25' style='stop-color:%2300f5ff;stop-opacity:1' /%3e%3cstop offset='50%25' style='stop-color:%23ff0080;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%239d4edd;stop-opacity:1' /%3e%3c/radialGradient%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad1)' stroke='%2300f5ff' stroke-width='2' opacity='0.9'/%3e%3ctext x='50' y='60' font-family='monospace' font-size='40' font-weight='bold' text-anchor='middle' fill='%23ffffff' text-shadow='0 0 10px %2300f5ff'%3eS%3c/text%3e%3c/svg%3e">
+  <title>Sriyans' ICSE Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f8f9fa' stroke='%2342a5f5' stroke-width='2'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%2342a5f5' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
     
     * {
       box-sizing: border-box;
     }
     
     :root {
-      --primary-neon: #00f5ff;
-      --secondary-neon: #ff0080;
-      --accent-neon: #39ff14;
-      --purple-glow: #9d4edd;
-      --gold-glow: #ffd700;
-      --dark-bg: #0a0a0f;
-      --card-bg: rgba(15, 15, 30, 0.8);
-      --glass-bg: rgba(255, 255, 255, 0.05);
+      --primary: #42a5f5;
+      --primary-light: #e3f2fd;
+      --secondary: #7e57c2;
+      --secondary-light: #ede7f6;
+      --accent: #66bb6a;
+      --accent-light: #e8f5e9;
+      --warning: #ffa726;
+      --warning-light: #fff3e0;
+      --light-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --text-light: #666666;
+      --border-color: #e0e0e0;
+      --shadow-color: rgba(0, 0, 0, 0.08);
+      --shadow-hover: rgba(0, 0, 0, 0.12);
     }
     
     body {
       margin: 0;
-      font-family: 'Exo 2', sans-serif;
-      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
-      background-attachment: fixed;
-      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
       overflow-x: hidden;
-      position: relative;
-    }
-    
-    /* Animated background particles */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      line-height: 1.6;
       background-image: 
-        radial-gradient(2px 2px at 20px 30px, var(--primary-neon), transparent),
-        radial-gradient(2px 2px at 40px 70px, var(--secondary-neon), transparent),
-        radial-gradient(1px 1px at 90px 40px, var(--accent-neon), transparent),
-        radial-gradient(1px 1px at 130px 80px, var(--purple-glow), transparent),
-        radial-gradient(2px 2px at 160px 30px, var(--gold-glow), transparent);
-      background-repeat: repeat;
-      background-size: 200px 100px;
-      animation: particleFloat 20s linear infinite;
-      opacity: 0.3;
-      z-index: -1;
-    }
-    
-    @keyframes particleFloat {
-      0% { transform: translateY(0px) translateX(0px); }
-      33% { transform: translateY(-800px) translateX(100px); }
-      66% { transform: translateY(-1600px) translateX(-100px); }
-      100% { transform: translateY(-2400px) translateX(0px); }
+        radial-gradient(circle at 5% 10%, rgba(66, 165, 245, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 95% 30%, rgba(126, 87, 194, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(102, 187, 106, 0.03) 0%, transparent 20%);
     }
     
     header {
       text-align: center;
       padding: 3rem 2rem;
-      background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1));
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+      border-bottom: 1px solid var(--border-color);
       position: relative;
       overflow: hidden;
     }
@@ -74,97 +55,68 @@
     header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
-      animation: headerSweep 8s linear infinite;
-    }
-    
-    @keyframes headerSweep {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
     }
     
     header h1 {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon), var(--accent-neon));
-      background-size: 300% 300%;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: gradientShift 3s ease-in-out infinite;
-      text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
     }
     
     header p {
       font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--text-light);
       margin: 0;
-      text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
-      position: relative;
-      z-index: 1;
+      font-weight: 500;
     }
     
     .quote {
       text-align: center;
       font-size: clamp(1.1rem, 3vw, 1.6rem);
-      font-weight: 300;
-      background: linear-gradient(45deg, var(--accent-neon), var(--gold-glow));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 400;
+      color: var(--secondary);
       margin: 3rem auto;
       max-width: 800px;
-      padding: 0 2rem;
-      text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+      padding: 1.5rem;
       position: relative;
+      background-color: var(--secondary-light);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(126, 87, 194, 0.1);
+      border-left: 4px solid var(--secondary);
     }
     
-    .quote::before, .quote::after {
-      content: '';
+    .quote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--secondary);
+      opacity: 0.2;
       position: absolute;
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
-      top: 50%;
+      top: 0;
+      left: 20px;
+      line-height: 1;
     }
-    
-    .quote::before { left: -80px; }
-    .quote::after { right: -80px; }
     
     section {
       margin: 3rem auto;
       max-width: 1000px;
       background: var(--card-bg);
-      border-radius: 25px;
+      border-radius: 15px;
       padding: 2.5rem;
-      box-shadow: 
-        0 0 50px rgba(0, 245, 255, 0.1),
-        inset 0 0 50px rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(0, 245, 255, 0.2);
+      box-shadow: 0 5px 20px var(--shadow-color);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
       position: relative;
-      backdrop-filter: blur(15px);
-      transition: all 0.4s ease;
-    }
-    
-    section:hover {
-      transform: translateY(-10px);
-      box-shadow: 
-        0 20px 60px rgba(0, 245, 255, 0.2),
-        inset 0 0 50px rgba(255, 255, 255, 0.05);
-      border-color: rgba(0, 245, 255, 0.4);
+      overflow: hidden;
     }
     
     section::before {
@@ -172,35 +124,72 @@
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary-neon), var(--secondary-neon), transparent);
-      border-radius: 25px 25px 0 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px var(--shadow-hover);
+    }
+    
+    section:hover::before {
+      opacity: 1;
     }
     
     section h2 {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Poppins', sans-serif;
       font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--secondary-neon), var(--purple-glow));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 600;
+      color: var(--secondary);
       margin-bottom: 1.5rem;
-      text-shadow: 0 0 20px rgba(247, 37, 133, 0.3);
+      position: relative;
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    section h2::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      background-color: var(--secondary-light);
+      border-radius: 6px;
       position: relative;
     }
     
     section h2::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: 0;
       left: 0;
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, var(--secondary-neon), transparent);
+      background: var(--secondary);
       border-radius: 2px;
     }
+    
+    /* Different colors for each section */
+    section:nth-child(4n+1) h2 { color: var(--primary); }
+    section:nth-child(4n+1) h2::after { background: var(--primary); }
+    section:nth-child(4n+1) h2::before { background-color: var(--primary-light); }
+    
+    section:nth-child(4n+2) h2 { color: var(--secondary); }
+    section:nth-child(4n+2) h2::after { background: var(--secondary); }
+    section:nth-child(4n+2) h2::before { background-color: var(--secondary-light); }
+    
+    section:nth-child(4n+3) h2 { color: var(--accent); }
+    section:nth-child(4n+3) h2::after { background: var(--accent); }
+    section:nth-child(4n+3) h2::before { background-color: var(--accent-light); }
+    
+    section:nth-child(4n+4) h2 { color: var(--warning); }
+    section:nth-child(4n+4) h2::after { background: var(--warning); }
+    section:nth-child(4n+4) h2::before { background-color: var(--warning-light); }
     
     ul {
       list-style: none;
@@ -214,60 +203,55 @@
     }
     
     a {
-      color: #fff;
+      color: var(--text-color);
       text-decoration: none;
-      background: linear-gradient(135deg, rgba(67, 97, 238, 0.8), rgba(99, 102, 241, 0.8));
+      background-color: #f5f7fa;
       padding: 1rem 1.5rem;
-      border-radius: 15px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 10px;
+      transition: all 0.3s ease;
       display: block;
       position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(67, 97, 238, 0.3);
-      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
       font-weight: 500;
+      overflow: hidden;
     }
     
     a::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
+      left: 0;
+      width: 4px;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-    
-    a:hover::before {
-      left: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
     a:hover {
-      background: linear-gradient(135deg, rgba(114, 9, 183, 0.9), rgba(86, 11, 173, 0.9));
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 
-        0 10px 30px rgba(114, 9, 183, 0.3),
-        0 0 20px rgba(157, 78, 221, 0.2);
-      border-color: rgba(157, 78, 221, 0.5);
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(66, 165, 245, 0.3);
+    }
+    
+    a:hover::before {
+      opacity: 1;
     }
     
     a:active {
-      transform: translateY(0) scale(0.98);
+      transform: translateY(0);
     }
     
     .about {
       text-align: center;
       margin: 4rem auto;
       max-width: 900px;
-      background: linear-gradient(135deg, var(--glass-bg), rgba(157, 78, 221, 0.1));
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
       padding: 3rem 2rem;
-      border-radius: 25px;
-      box-shadow: 
-        0 0 60px rgba(157, 78, 221, 0.2),
-        inset 0 0 60px rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(157, 78, 221, 0.3);
-      backdrop-filter: blur(20px);
+      border-radius: 15px;
+      box-shadow: 0 5px 20px var(--shadow-color);
+      border: 1px solid var(--border-color);
       position: relative;
     }
     
@@ -278,45 +262,35 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(45deg, var(--purple-glow), var(--gold-glow), var(--primary-neon));
-      border-radius: 25px;
+      background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+      border-radius: 16px;
       z-index: -1;
-      opacity: 0.3;
-      animation: borderGlow 4s linear infinite;
-    }
-    
-    @keyframes borderGlow {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.6; }
+      opacity: 0.5;
     }
     
     .about h2 {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Poppins', sans-serif;
       font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--gold-glow), var(--accent-neon));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 600;
+      color: var(--accent);
       margin-bottom: 1.5rem;
     }
     
     .about p {
       font-size: 1.1rem;
       line-height: 1.8;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--text-color);
       margin: 0;
     }
     
     footer {
       text-align: center;
       padding: 2rem;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.8));
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
       margin-top: 4rem;
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(15px);
-      border-top: 1px solid rgba(0, 245, 255, 0.2);
+      color: var(--text-color);
+      border-top: 1px solid var(--border-color);
       position: relative;
     }
     
@@ -326,33 +300,54 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
     }
     
     footer a {
-      background: linear-gradient(45deg, var(--gold-glow), var(--accent-neon));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary);
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
       display: inline-block;
+      background: none;
       padding: 0;
       border: none;
       border-radius: 0;
     }
     
     footer a:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      background: none;
+      color: var(--secondary);
+      transform: none;
       box-shadow: none;
     }
     
     footer p {
       margin: 0.5rem 0;
+    }
+    
+    /* Decorative elements */
+    .decorative-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: -150px;
+      right: -150px;
+    }
+    
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      bottom: -100px;
+      left: -100px;
     }
     
     /* Responsive design */
@@ -373,6 +368,10 @@
       .about {
         margin: 3rem 1rem;
         padding: 2rem 1.5rem;
+      }
+      
+      section h2 {
+        font-size: 1.5rem;
       }
     }
     
@@ -397,7 +396,7 @@
       animation: fadeInUp 0.6s ease-out;
     }
     
-    /* Glow effects on scroll */
+    /* Stagger animations */
     section:nth-child(even) {
       animation-delay: 0.2s;
     }
@@ -408,8 +407,11 @@
   </style>
 </head>
 <body>
+  <div class="decorative-circle circle-1"></div>
+  <div class="decorative-circle circle-2"></div>
+  
   <header>
-    <h1>Sriyans' Futuristic ICSE Notes</h1>
+    <h1>Sriyans' ICSE Notes</h1>
     <p>View the mindmap from the <strong>Studio Section (purple icon)</strong></p>
   </header>
   
@@ -479,7 +481,7 @@
 
   <div class="about">
     <h2>About Sriyans</h2>
-    <p>These ICSE notes are curated and organized by <strong>Sriyans</strong>, a passionate learner and innovator. With futuristic design and structured clarity, this platform reflects his dedication to making learning smarter, interactive, and enjoyable. 🌟</p>
+    <p>These ICSE notes are curated and organized by <strong>Sriyans</strong>, a passionate learner and innovator. With clean design and structured clarity, this platform reflects his dedication to making learning smarter, interactive, and enjoyable. 🌟</p>
   </div>
 
   <footer>
