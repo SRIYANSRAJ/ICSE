@@ -6,295 +6,230 @@
   <title>Devriyans' ICSE Notes</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f8f9fa' stroke='%2342a5f5' stroke-width='2'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%2342a5f5' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
     
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     
     :root {
-      --primary: #42a5f5;
-      --primary-light: #e3f2fd;
-      --secondary: #7e57c2;
-      --secondary-light: #ede7f6;
-      --accent: #66bb6a;
-      --accent-light: #e8f5e9;
-      --warning: #ffa726;
-      --warning-light: #fff3e0;
-      --light-bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-color: #333333;
-      --text-light: #666666;
-      --border-color: #e0e0e0;
-      --shadow-color: rgba(0, 0, 0, 0.08);
-      --shadow-hover: rgba(0, 0, 0, 0.12);
+      --bg-dark: #0a0e27;
+      --bg-card: #141831;
+      --primary: #00d9ff;
+      --secondary: #7c3aed;
+      --accent: #f97316;
+      --text: #e4e7eb;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    body.light-mode {
+      --bg-dark: #f8fafc;
+      --bg-card: #ffffff;
+      --primary: #0ea5e9;
+      --secondary: #7c3aed;
+      --accent: #f97316;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: rgba(0, 0, 0, 0.08);
     }
     
     body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: var(--light-bg);
-      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
       overflow-x: hidden;
       line-height: 1.6;
-      background-image: 
-        radial-gradient(circle at 5% 10%, rgba(66, 165, 245, 0.03) 0%, transparent 20%),
-        radial-gradient(circle at 95% 30%, rgba(126, 87, 194, 0.03) 0%, transparent 20%),
-        radial-gradient(circle at 50% 80%, rgba(102, 187, 106, 0.03) 0%, transparent 20%);
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+
+    body.light-mode .star {
+      background: #cbd5e1;
+      opacity: 0.4;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-icon {
+      font-size: 1.25rem;
+      transition: transform 0.3s;
+    }
+
+    .theme-toggle:hover .theme-icon {
+      transform: rotate(20deg);
     }
     
     header {
-      text-align: center;
-      padding: 3rem 2rem;
-      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
-      border-bottom: 1px solid var(--border-color);
       position: relative;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%);
       overflow: hidden;
     }
-    
-    header::before {
-      content: '';
+
+    .glow {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.3;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .glow-1 {
+      background: var(--primary);
+      top: -300px;
+      left: 10%;
+    }
+
+    .glow-2 {
+      background: var(--secondary);
+      top: -200px;
+      right: 10%;
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
     }
     
-    header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 700;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
       margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.02em;
     }
     
-    header p {
-      font-size: 1.3rem;
-      color: var(--text-light);
-      margin: 0;
-      font-weight: 500;
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .studio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 217, 255, 0.1);
+      border: 1px solid rgba(0, 217, 255, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 0.5rem;
     }
     
     .quote {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
       text-align: center;
-      font-size: clamp(1.1rem, 3vw, 1.6rem);
-      font-weight: 400;
-      color: var(--secondary);
-      margin: 3rem auto;
-      max-width: 800px;
-      padding: 1.5rem;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-style: italic;
+      color: var(--text);
       position: relative;
-      background-color: var(--secondary-light);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(126, 87, 194, 0.1);
-      border-left: 4px solid var(--secondary);
+      z-index: 1;
     }
-    
+
     .quote::before {
       content: '"';
-      font-size: 3rem;
-      color: var(--secondary);
-      opacity: 0.2;
+      font-size: 8rem;
       position: absolute;
-      top: 0;
-      left: 20px;
-      line-height: 1;
+      top: -2rem;
+      left: 2rem;
+      color: var(--primary);
+      opacity: 0.1;
+      font-family: 'Space Grotesk', sans-serif;
     }
-    
-    section {
-      margin: 3rem auto;
-      max-width: 1000px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      padding: 2.5rem;
-      box-shadow: 0 5px 20px var(--shadow-color);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--primary), var(--accent));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px var(--shadow-hover);
-    }
-    
-    section:hover::before {
-      opacity: 1;
-    }
-    
-    section h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--secondary);
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-    }
-    
-    section h2::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      margin-right: 12px;
-      background-color: var(--secondary-light);
-      border-radius: 6px;
-      position: relative;
-    }
-    
-    section h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--secondary);
-      border-radius: 2px;
-    }
-    
-    /* Different colors for each section */
-    section:nth-child(4n+1) h2 { color: var(--primary); }
-    section:nth-child(4n+1) h2::after { background: var(--primary); }
-    section:nth-child(4n+1) h2::before { background-color: var(--primary-light); }
-    
-    section:nth-child(4n+2) h2 { color: var(--secondary); }
-    section:nth-child(4n+2) h2::after { background: var(--secondary); }
-    section:nth-child(4n+2) h2::before { background-color: var(--secondary-light); }
-    
-    section:nth-child(4n+3) h2 { color: var(--accent); }
-    section:nth-child(4n+3) h2::after { background: var(--accent); }
-    section:nth-child(4n+3) h2::before { background-color: var(--accent-light); }
-    
-    section:nth-child(4n+4) h2 { color: var(--warning); }
-    section:nth-child(4n+4) h2::after { background: var(--warning); }
-    section:nth-child(4n+4) h2::before { background-color: var(--warning-light); }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      gap: 1rem;
-    }
-    
-    li {
-      margin: 0;
-    }
-    
-    a {
-      color: var(--text-color);
-      text-decoration: none;
-      background-color: #f5f7fa;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      display: block;
-      position: relative;
-      border: 1px solid var(--border-color);
-      font-weight: 500;
-      overflow: hidden;
-    }
-    
-    a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--primary), var(--accent));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    a:hover {
-      background-color: var(--primary);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(66, 165, 245, 0.3);
-    }
-    
-    a:hover::before {
-      opacity: 1;
-    }
-    
-    a:active {
-      transform: translateY(0);
-    }
-    
-    .about {
-      text-align: center;
-      margin: 4rem auto;
-      max-width: 900px;
-      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
-      padding: 3rem 2rem;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px var(--shadow-color);
-      border: 1px solid var(--border-color);
-      position: relative;
-    }
-    
-    .about::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
-      border-radius: 16px;
-      z-index: -1;
-      opacity: 0.5;
-    }
-    
-    .about h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-    
-    .about p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-color);
-      margin: 0;
-    }
-    
-    footer {
-      text-align: center;
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
       padding: 2rem;
-      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
-      margin-top: 4rem;
-      font-size: 1rem;
-      color: var(--text-color);
-      border-top: 1px solid var(--border-color);
       position: relative;
+      z-index: 1;
     }
-    
-    footer::before {
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -302,207 +237,315 @@
       right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.4s;
     }
-    
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(124, 58, 237, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .link-item {
+      display: block;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .link-item:hover {
+      background: rgba(0, 217, 255, 0.1);
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .link-item:hover::before {
+      left: 100%;
+    }
+
+    .about {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 3rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .about h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 217, 255, 0.05) 100%);
+    }
+
     footer a {
       color: var(--primary);
       text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-block;
-      background: none;
-      padding: 0;
-      border: none;
-      border-radius: 0;
+      transition: color 0.3s;
+      margin: 0 0.5rem;
     }
-    
+
     footer a:hover {
       color: var(--secondary);
-      transform: none;
-      box-shadow: none;
     }
-    
+
     footer p {
       margin: 0.5rem 0;
+      color: var(--text-muted);
     }
-    
-    /* Decorative elements */
-    .decorative-circle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.1;
-      z-index: -1;
-    }
-    
-    .circle-1 {
-      width: 300px;
-      height: 300px;
-      background: var(--primary);
-      top: -150px;
-      right: -150px;
-    }
-    
-    .circle-2 {
-      width: 200px;
-      height: 200px;
-      background: var(--secondary);
-      bottom: -100px;
-      left: -100px;
-    }
-    
-    /* Responsive design */
+
     @media (max-width: 768px) {
-      section {
-        margin: 2rem 1rem;
-        padding: 2rem 1.5rem;
-      }
-      
-      .quote::before, .quote::after {
-        display: none;
+      .grid {
+        grid-template-columns: 1fr;
       }
       
       header {
-        padding: 2rem 1rem;
+        padding: 4rem 1rem 3rem;
       }
-      
+
+      .quote {
+        margin: 2rem 1rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
       .about {
-        margin: 3rem 1rem;
-        padding: 2rem 1.5rem;
+        margin: 2rem 1rem;
+        padding: 2rem;
       }
-      
-      section h2 {
-        font-size: 1.5rem;
-      }
-    }
-    
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* Loading animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    section {
-      animation: fadeInUp 0.6s ease-out;
-    }
-    
-    /* Stagger animations */
-    section:nth-child(even) {
-      animation-delay: 0.2s;
-    }
-    
-    section:nth-child(odd) {
-      animation-delay: 0.4s;
     }
   </style>
 </head>
 <body>
-  <div class="decorative-circle circle-1"></div>
-  <div class="decorative-circle circle-2"></div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <span class="theme-icon" id="themeIcon">🌙</span>
+    <span id="themeText">Light Mode</span>
+  </button>
+  
+  <div class="stars" id="stars"></div>
   
   <header>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
     <h1>Devriyans' ICSE Notes</h1>
-    <p>
-  Don't forget to view the mindmap (<img src="icon.svg" alt="Studio Icon" width="25" height="30" style="vertical-align:middle; margin-left:4px;">)  from the 
-  <strong>Studio Section</strong> 
-  
-</p>
+    <div class="subtitle">
+      <span>Your ultimate study companion</span>
+      <div class="studio-badge">
+        <img src="icon.svg" alt="Studio" width="20" height="20" style="vertical-align:middle;">
+        <span>Check Studio Mindmaps</span>
+      </div>
+    </div>
   </header>
   
-  <div class="quote">"Students are not born toppers, they become one through focus, persistence, and smart effort."</div>
+  <div class="quote">
+    Students are not born toppers, they become one through focus, persistence, and smart effort.
+  </div>
 
-  <section>
-    <h2>English Literature</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/d9400a02-c0c1-419c-83b3-a9b36eb794ba" target="_blank">Julius Caesar</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/64adfff4-a931-4dfb-b647-b2f0a4efc7f9" target="_blank">Treasure Chest - Short Poems</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/7f0d0e47-a1cf-484d-9609-1aba55c5db40" target="_blank">Treasure Chest - Short Stories</a></li>
-    </ul>
-  </section>
+  <div class="container">
+    <div class="grid">
+      <div class="card">
+        <h2><span class="icon">📚</span> English Literature</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/d9400a02-c0c1-419c-83b3-a9b36eb794ba" target="_blank" class="link-item">Julius Caesar</a>
+          <a href="https://notebooklm.google.com/notebook/64adfff4-a931-4dfb-b647-b2f0a4efc7f9" target="_blank" class="link-item">Treasure Chest - Short Poems</a>
+          <a href="https://notebooklm.google.com/notebook/7f0d0e47-a1cf-484d-9609-1aba55c5db40" target="_blank" class="link-item">Treasure Chest - Short Stories</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>Biology</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/ccc27d91-2604-43d5-8892-911710c42944" target="_blank">Endocrine System</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/0fdbab93-66b9-45e1-adb9-e3ce2822c2fa" target="_blank">Chemical Coordination in Plants</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/92b2f911-a2ad-444c-9466-8e66eaf75d08" target="_blank">Transpiration</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/450ff26f-689d-4a12-8913-757b52553550" target="_blank">Photosynthesis</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/06ff423d-52cd-49c2-a007-140b1c614733" target="_blank">Evolution</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/f8173a27-ca57-4564-948a-2677f1af3893" target="_blank">Pollution - Sources and Effects</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/a2bbccf4-b485-4b62-a5d6-b7c6e5c9a3f0" target="_blank">Absorption by Roots</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/e48e37fa-7b90-4ca9-ba07-c844cf52869f" target="_blank">Cell Cycle and Division</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/c0bdf323-afa4-412f-ba24-b6679f805b35" target="_blank">Chromosomes</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/c172d5d8-bfa3-4e95-98e5-413ecd44b8a5" target="_blank">Genetics</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/28f5e994-2287-4924-abdf-6a26b91230c9" target="blank">Excretory System</a></li>
-    </ul>
-  </section>
+      <div class="card">
+        <h2><span class="icon">🧬</span> Biology</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/ccc27d91-2604-43d5-8892-911710c42944" target="_blank" class="link-item">Endocrine System</a>
+          <a href="https://notebooklm.google.com/notebook/0fdbab93-66b9-45e1-adb9-e3ce2822c2fa" target="_blank" class="link-item">Chemical Coordination in Plants</a>
+          <a href="https://notebooklm.google.com/notebook/92b2f911-a2ad-444c-9466-8e66eaf75d08" target="_blank" class="link-item">Transpiration</a>
+          <a href="https://notebooklm.google.com/notebook/450ff26f-689d-4a12-8913-757b52553550" target="_blank" class="link-item">Photosynthesis</a>
+          <a href="https://notebooklm.google.com/notebook/06ff423d-52cd-49c2-a007-140b1c614733" target="_blank" class="link-item">Evolution</a>
+          <a href="https://notebooklm.google.com/notebook/f8173a27-ca57-4564-948a-2677f1af3893" target="_blank" class="link-item">Pollution - Sources and Effects</a>
+          <a href="https://notebooklm.google.com/notebook/a2bbccf4-b485-4b62-a5d6-b7c6e5c9a3f0" target="_blank" class="link-item">Absorption by Roots</a>
+          <a href="https://notebooklm.google.com/notebook/e48e37fa-7b90-4ca9-ba07-c844cf52869f" target="_blank" class="link-item">Cell Cycle and Division</a>
+          <a href="https://notebooklm.google.com/notebook/c0bdf323-afa4-412f-ba24-b6679f805b35" target="_blank" class="link-item">Chromosomes</a>
+          <a href="https://notebooklm.google.com/notebook/c172d5d8-bfa3-4e95-98e5-413ecd44b8a5" target="_blank" class="link-item">Genetics</a>
+          <a href="https://notebooklm.google.com/notebook/28f5e994-2287-4924-abdf-6a26b91230c9" target="_blank" class="link-item">Excretory System</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>Chemistry</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/52ffed4d-cfee-4168-9a02-a0d3a8561c7c" target="_blank">Periodic Properties and Variations</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/b6086cb8-2d3c-4184-9e3b-d62219dddf82" target="_blank">Analytical Chemistry</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/905e6e23-f571-4362-b69f-15293d723e31" target="blank">Acids, Bases and Salts</a></li>
-    </ul>
-  </section>
+      <div class="card">
+        <h2><span class="icon">⚗️</span> Chemistry</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/52ffed4d-cfee-4168-9a02-a0d3a8561c7c" target="_blank" class="link-item">Periodic Properties and Variations</a>
+          <a href="https://notebooklm.google.com/notebook/b6086cb8-2d3c-4184-9e3b-d62219dddf82" target="_blank" class="link-item">Analytical Chemistry</a>
+          <a href="https://notebooklm.google.com/notebook/905e6e23-f571-4362-b69f-15293d723e31" target="_blank" class="link-item">Acids, Bases and Salts</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>Physics</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/a2b0d58b-f7b1-482b-885a-39fd324ef652" target="_blank">Light</a></li>
-    </ul>
-  </section>
+      <div class="card">
+        <h2><span class="icon">⚡</span> Physics</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/a2b0d58b-f7b1-482b-885a-39fd324ef652" target="_blank" class="link-item">Light</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>History & Civics</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/df0d9c40-9254-41a4-9cf3-7e00cdb3cf58" target="_blank">Gandhian Era</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/bac1e8e2-09c9-4e5d-8a19-c8e96a005c03" target="_blank">Civics</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/9ce14ce2-4c5b-429d-832e-ea4b0b8cf078" target="_blank">History and Civics PYQ</a></li>
-    </ul>
-  </section>
+      <div class="card">
+        <h2><span class="icon">🏛️</span> History & Civics</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/df0d9c40-9254-41a4-9cf3-7e00cdb3cf58" target="_blank" class="link-item">Gandhian Era</a>
+          <a href="https://notebooklm.google.com/notebook/bac1e8e2-09c9-4e5d-8a19-c8e96a005c03" target="_blank" class="link-item">Civics</a>
+          <a href="https://notebooklm.google.com/notebook/9ce14ce2-4c5b-429d-832e-ea4b0b8cf078" target="_blank" class="link-item">History and Civics PYQ</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>Geography</h2>
-    <ul>
-      <li><a href="https://notebooklm.google.com/notebook/4c98bcaa-5094-4a36-96a4-55c31635cc54" target="_blank">Mineral Resources in India</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/2cbd8993-15fb-4fcc-82a7-a802aa8fa5a2" target="_blank">Water Resources and Irrigation</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/e68f4579-bf76-4a70-96ee-774d64c57cb8" target="_blank">Natural Vegetation</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/da1989e8-3b3a-4e90-a3fb-587af23e1291" target="_blank">Soil Resources</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/84d28523-96b7-4230-b4e4-e16e8657b589" target="_blank">Agriculture</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/0f5346b2-3e64-4c63-8293-936900ec1454" target="_blank">Conventional and Non-Conventional Sources of Energy</a></li>
-      <li><a href="https://notebooklm.google.com/notebook/8124f1cc-8f5d-46a5-b1b8-947df6b17651" target="_blank">Climate of India</a></li>
-    </ul>
-  </section>
+      <div class="card">
+        <h2><span class="icon">🌍</span> Geography</h2>
+        <div class="links">
+          <a href="https://notebooklm.google.com/notebook/4c98bcaa-5094-4a36-96a4-55c31635cc54" target="_blank" class="link-item">Mineral Resources in India</a>
+          <a href="https://notebooklm.google.com/notebook/2cbd8993-15fb-4fcc-82a7-a802aa8fa5a2" target="_blank" class="link-item">Water Resources and Irrigation</a>
+          <a href="https://notebooklm.google.com/notebook/e68f4579-bf76-4a70-96ee-774d64c57cb8" target="_blank" class="link-item">Natural Vegetation</a>
+          <a href="https://notebooklm.google.com/notebook/da1989e8-3b3a-4e90-a3fb-587af23e1291" target="_blank" class="link-item">Soil Resources</a>
+          <a href="https://notebooklm.google.com/notebook/84d28523-96b7-4230-b4e4-e16e8657b589" target="_blank" class="link-item">Agriculture</a>
+          <a href="https://notebooklm.google.com/notebook/0f5346b2-3e64-4c63-8293-936900ec1454" target="_blank" class="link-item">Conventional and Non-Conventional Sources of Energy</a>
+          <a href="https://notebooklm.google.com/notebook/8124f1cc-8f5d-46a5-b1b8-947df6b17651" target="_blank" class="link-item">Climate of India</a>
+        </div>
+      </div>
+    </div>
 
-  <div class="about">
-    <h2>About Devriyans</h2>
-  <p>These ICSE notes are curated and organized by <strong>Devrians</strong>, a duo of two passionate friends — Sriyans and Devashsih — from Class 10 ICSE. With a shared love for learning, innovation, and clarity, they’ve built this platform to make studying smarter, interactive, and enjoyable for every student. </p>
+    <div class="about">
+      <h2>About Devriyans</h2>
+      <p>These ICSE notes are curated and organized by <strong>Devrians</strong>, a duo of two passionate friends — Sriyans and Devashsih — from Class 10 ICSE. With a shared love for learning, innovation, and clarity, they've built this platform to make studying smarter, interactive, and enjoyable for every student.</p>
+    </div>
   </div>
 
   <footer>
-    <p>Contact: <a href="mailto:sriyansraj02@gmail.com">sriyansraj02@gmail.com</a>
-                <a href="mailto:devmaurya920@gmail.com">devmaurya920@gmail.com</a></p>
-                
+    <p>Contact: 
+      <a href="mailto:sriyansraj02@gmail.com">sriyansraj02@gmail.com</a>
+      <a href="mailto:devmaurya920@gmail.com">devmaurya920@gmail.com</a>
+    </p>
     <p>© 2025 ICSE Notes. All rights reserved.</p>
   </footer>
+
+  <script>
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      body.classList.add('light-mode');
+      themeIcon.textContent = '☀️';
+      themeText.textContent = 'Dark Mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      
+      themeIcon.textContent = isLight ? '☀️' : '🌙';
+      themeText.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+      
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
