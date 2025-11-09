@@ -6,7 +6,7 @@
   <title>Devriyans' ICSE Notes</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f8f9fa' stroke='%2342a5f5' stroke-width='2'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%2342a5f5' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap');
     
     * {
       margin: 0;
@@ -14,296 +14,266 @@
       box-sizing: border-box;
     }
     
-    /* --- COLOR PALETTE --- */
-    /* Dark Mode (Default) */
     :root {
-      --bg-primary: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      --bg-primary: #0f172a;
       --bg-secondary: #1e293b;
-      --card-bg: rgba(30, 41, 59, 0.5);
-      --primary: #38bdf8;   /* Sky Blue */
-      --secondary: #f97316; /* Orange */
-      --accent-1: #facc15;  /* Yellow */
-      --accent-2: #4ade80;  /* Green */
-      --accent-3: #a78bfa;  /* Violet */
+      --card-bg: rgba(30, 41, 59, 0.6);
+      --primary: #60a5fa;
+      --secondary: #34d399;
+      --accent: #a78bfa;
       --text: #f1f5f9;
       --text-muted: #94a3b8;
-      --shadow-primary: rgba(56, 189, 248, 0.3);
-      --quote-bg: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(56, 189, 248, 0.1));
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: rgba(0, 0, 0, 0.3);
     }
 
-    /* Light Mode */
     body.light-mode {
-      --bg-primary: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      --bg-primary: #f8fafc;
       --bg-secondary: #ffffff;
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --primary: #0ea5e9;   /* UPDATED: Brighter Sky Blue */
-      --secondary: #22c55e; /* UPDATED: Brighter Green */
-      --accent-1: #f59e0b;  /* Amber */
-      --accent-2: #2dd4bf;  /* Teal */
-      --accent-3: #8b5cf6;  /* Violet */
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --primary: #3b82f6;
+      --secondary: #10b981;
+      --accent: #8b5cf6;
       --text: #0f172a;
-      --text-muted: #475569;
-      --shadow-primary: rgba(14, 165, 233, 0.2);
-      --quote-bg: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(14, 165, 233, 0.1));
+      --text-muted: #64748b;
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: rgba(0, 0, 0, 0.08);
     }
     
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg-primary);
       color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.6;
-      transition: background 0.5s ease, color 0.5s ease;
-      /* Hiding the default cursor to replace with a custom one */
-      cursor: none;
+      line-height: 1.7;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
+    /* Simplified background animation */
     .animated-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; /* Pushed to the very back */
+      z-index: -1;
       overflow: hidden;
+      opacity: 0.4;
     }
 
-    /* NEW: Updated Bubble styling for a "water bubble" effect */
-    .bubble {
+    .orb {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      animation: float 20s infinite ease-in-out;
-      opacity: 0.8;
-      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      animation: float 25s infinite ease-in-out;
+      filter: blur(40px);
     }
 
-    .bubble:nth-child(1) { width: 100px; height: 100px; background: rgba(56, 189, 248, 0.2); top: 10%; left: 10%; animation-duration: 25s; }
-    .bubble:nth-child(2) { width: 80px; height: 80px; background: rgba(249, 115, 22, 0.2); top: 60%; right: 15%; animation-duration: 30s; animation-delay: -5s; }
-    .bubble:nth-child(3) { width: 120px; height: 120px; background: rgba(250, 204, 21, 0.2); bottom: 10%; left: 50%; animation-duration: 22s; animation-delay: -10s; }
-    .bubble:nth-child(4) { width: 60px; height: 60px; background: rgba(74, 222, 128, 0.2); top: 40%; left: 30%; animation-duration: 28s; animation-delay: -15s; }
-    .bubble:nth-child(5) { width: 90px; height: 90px; background: rgba(167, 139, 250, 0.2); top: 80%; left: 25%; animation-duration: 26s; animation-delay: -8s; }
-    .bubble:nth-child(6) { width: 110px; height: 110px; background: rgba(249, 115, 22, 0.2); bottom: 5%; right: 40%; animation-duration: 32s; animation-delay: -18s; }
+    .orb:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; animation-duration: 30s; }
+    .orb:nth-child(2) { width: 250px; height: 250px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); bottom: 15%; right: 15%; animation-duration: 35s; animation-delay: -10s; }
+    .orb:nth-child(3) { width: 200px; height: 200px; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); top: 50%; left: 50%; animation-duration: 40s; animation-delay: -20s; }
 
     @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(60px, -40px) scale(1.1); }
-      50% { transform: translate(-40px, 50px) scale(0.9); }
-      75% { transform: translate(50px, 70px) scale(1.05); }
-    }
-    
-    /* NEW: Cursor follower styles */
-    .cursor-follower {
-        position: fixed;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: var(--primary);
-        opacity: 0.5;
-        filter: blur(5px);
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-    }
-    
-    body:hover .cursor-follower {
-        opacity: 0.5;
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, -30px); }
+      66% { transform: translate(-30px, 50px); }
     }
 
+    /* Accessibility improvements */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 0 0 4px 0;
+      z-index: 10000;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Theme toggle with better contrast */
     .theme-toggle {
       position: fixed;
-      top: 2rem;
-      right: 2rem;
+      top: 1.5rem;
+      right: 1.5rem;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--border);
       border-radius: 50px;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 1.25rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: 'Poppins', sans-serif;
       font-weight: 600;
       color: var(--text);
-      transition: all 0.3s;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--shadow);
     }
 
-    .theme-toggle:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    .theme-toggle:hover,
+    .theme-toggle:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow);
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 
-    .theme-icon { font-size: 1.5rem; }
+    .theme-icon { 
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
     
     header {
-      position: relative;
-      padding: 6rem 2rem 4rem;
+      padding: 5rem 2rem 3rem;
       text-align: center;
-      overflow: hidden;
-      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
     h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent-1));
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-      letter-spacing: -0.02em;
-      background-size: 200% auto;
-      animation: glow 3s ease-in-out infinite, gradientMove 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 20px var(--primary)); }
-      50% { filter: drop-shadow(0 0 40px var(--secondary)); }
     }
     
     .subtitle {
-      font-size: 1.2rem;
+      font-size: 1.125rem;
       color: var(--text-muted);
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      min-height: 2rem; /* Reserve space for typing text */
+      margin-bottom: 1.5rem;
+      font-weight: 500;
     }
-
-    /* NEW: Styles for the typing animation */
-    .typing-cursor {
-        color: var(--primary);
-        font-weight: 600;
-        animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-
 
     .studio-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      padding: 0.5rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
       border-radius: 50px;
-      font-weight: 700;
-      color: #000;
+      font-weight: 600;
+      color: var(--text);
       margin-top: 0.5rem;
-      box-shadow: 0 4px 15px rgba(255, 217, 61, 0.4);
-      animation: pulse 2s ease-in-out infinite;
+      transition: all 0.3s ease;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    .studio-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow);
     }
     
     .quote {
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 2.5rem;
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
       text-align: center;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      font-weight: 600;
+      font-size: 1.125rem;
+      font-weight: 500;
       color: var(--text);
-      position: relative;
-      z-index: 1;
-      background: var(--quote-bg);
+      background: var(--card-bg);
       backdrop-filter: blur(10px);
-      border-radius: 24px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px var(--shadow);
     }
 
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem;
+    }
+
+    /* Search functionality */
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 3rem;
       position: relative;
-      z-index: 1;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      font-size: 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .search-input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
     }
 
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      /* NEW: Transition for tilt effect */
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s linear;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      animation: fadeIn 0.6s ease-out backwards;
     }
 
-    body.light-mode .card {
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent-1), var(--accent-2));
-      background-size: 300% 100%;
-      animation: gradientMove 3s ease infinite;
-    }
-
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .card:hover {
-      /* Adjusted hover for tilt effect */
-      transform: translateY(-10px) scale(1.02); 
-      box-shadow: 0 20px 60px var(--shadow-primary);
-    }
-    
-    /* Staggered card animation */
-    .card:nth-child(1) { animation: slideIn 0.6s ease-out backwards; }
-    .card:nth-child(2) { animation: slideIn 0.7s ease-out backwards; }
-    .card:nth-child(3) { animation: slideIn 0.8s ease-out backwards; }
-    .card:nth-child(4) { animation: slideIn 0.9s ease-out backwards; }
-    .card:nth-child(5) { animation: slideIn 1.0s ease-out backwards; }
-    .card:nth-child(6) { animation: slideIn 1.1s ease-out backwards; }
-
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(50px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.2s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.3s; }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--shadow);
+      border-color: var(--primary);
+    }
+
     .card h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
       color: var(--text);
       display: flex;
       align-items: center;
@@ -312,117 +282,111 @@
     }
 
     .icon {
-      width: 50px;
-      height: 50px;
+      width: 42px;
+      height: 42px;
       flex-shrink: 0;
-      border-radius: 15px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      box-shadow: 0 4px 15px var(--shadow-primary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-    
-    .card:nth-child(1) .icon { background: linear-gradient(135deg, var(--secondary), var(--accent-1)); }
-    .card:nth-child(2) .icon { background: linear-gradient(135deg, var(--primary), var(--accent-2)); }
-    .card:nth-child(3) .icon { background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); }
-    .card:nth-child(4) .icon { background: linear-gradient(135deg, var(--accent-3), var(--secondary)); }
-    .card:nth-child(5) .icon { background: linear-gradient(135deg, var(--accent-2), var(--primary)); }
-    .card:nth-child(6) .icon { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
-
 
     .links {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
     .link-item {
       display: block;
-      padding: 1rem 1.25rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      color: var(--text-muted);
+      padding: 0.875rem 1rem;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
+      font-weight: 500;
       position: relative;
       overflow: hidden;
-      font-weight: 500;
     }
 
-    body.light-mode .link-item {
-      background: rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0, 0, 0, 0.1);
+    .link-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
     }
 
-    .link-item:hover {
-      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent-1));
-      background-size: 200% 200%;
-      animation: gradientMove 2s ease infinite;
-      border-color: transparent;
-      transform: translateX(8px);
-      box-shadow: 0 4px 20px var(--shadow-primary);
-      color: #fff;
-      font-weight: 600;
+    .link-item:hover::before,
+    .link-item:focus::before {
+      left: 100%;
+    }
+
+    .link-item:hover,
+    .link-item:focus {
+      background: var(--primary);
+      color: white;
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px var(--shadow);
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 
     .about {
-      max-width: 1000px;
-      margin: 4rem auto;
-      padding: 3rem;
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2.5rem;
       background: var(--card-bg);
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.light-mode .about {
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     }
 
     .about h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 800;
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 700;
     }
 
     .about p {
-      font-size: 1.1rem;
+      font-size: 1.0625rem;
       line-height: 1.8;
-      color: var(--text);
+      color: var(--text-muted);
     }
 
     footer {
       text-align: center;
-      padding: 3rem 2rem;
-      margin-top: 4rem;
-      border-top: 2px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      z-index: 1;
+      padding: 2.5rem 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border);
     }
 
     footer a {
       color: var(--primary);
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
       margin: 0 0.5rem;
       font-weight: 600;
     }
 
-    footer a:hover {
+    footer a:hover,
+    footer a:focus {
       color: var(--secondary);
-      text-shadow: 0 0 10px var(--secondary);
+      text-decoration: underline;
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
 
     footer p {
@@ -430,132 +394,162 @@
       color: var(--text-muted);
     }
 
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .orb {
+        animation: none;
+      }
+    }
+
     @media (max-width: 768px) {
       .grid { grid-template-columns: 1fr; }
-      header { padding: 4rem 1rem 3rem; }
+      header { padding: 4rem 1rem 2rem; }
       .quote { margin: 2rem 1rem; padding: 1.5rem; }
       .container { padding: 1rem; }
       .about { margin: 2rem 1rem; padding: 2rem; }
-      .theme-toggle { top: 1rem; right: 1rem; padding: 0.5rem 1rem; }
-      .cursor-follower { display: none; } /* Hide custom cursor on mobile */
-      body { cursor: auto; } /* Restore default cursor on mobile */
+      .theme-toggle { top: 1rem; right: 1rem; padding: 0.625rem 1rem; }
+      .search-container { margin: 0 1rem 2rem; }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root {
+        --border: rgba(255, 255, 255, 0.5);
+      }
+      
+      body.light-mode {
+        --border: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    /* Hidden class for search filter */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <!-- NEW: Element for the cursor follower -->
-  <div class="cursor-follower"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span class="theme-icon" id="themeIcon">🌙</span>
-    <span id="themeText">Light</span>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle between light and dark mode">
+    <span class="theme-icon" id="themeIcon" aria-hidden="true">🌙</span>
+    <span id="themeText">Light Mode</span>
   </button>
   
-  <div class="animated-bg">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
+  <div class="animated-bg" aria-hidden="true">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
   </div>
   
   <header>
-    <h1>Devriyans' ICSE Notes</h1>
-    <div class="subtitle">
-      <!-- NEW: Elements for the typing animation -->
-      <span id="typing-text"></span><span class="typing-cursor">|</span>
-      <div class="studio-badge">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        <span>Check Studio Mindmaps</span>
-      </div>
+    <h1><span class="gradient-text">Devriyans'</span> ICSE Notes</h1>
+    <p class="subtitle">Your focused study companion for ICSE excellence</p>
+    <div class="studio-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <span>Check Studio Mindmaps</span>
     </div>
   </header>
   
-  <div class="quote">
-    "Study hard today, so tomorrow’s question paper feels easy." 🚀
+  <div class="quote" role="complementary">
+    "Study hard today, so tomorrow's question paper feels easy." 🚀
   </div>
 
   <div class="container">
-    <div class="grid">
-      <div class="card">
-        <h2><span class="icon">📚</span> English Literature</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/d9400a02-c0c1-419c-83b3-a9b36eb794ba" target="_blank" class="link-item">Julius Caesar</a>
-          <a href="https://notebooklm.google.com/notebook/64adfff4-a931-4dfb-b647-b2f0a4efc7f9" target="_blank" class="link-item">Treasure Chest - Short Poems</a>
-          <a href="https://notebooklm.google.com/notebook/7f0d0e47-a1cf-484d-9609-1aba55c5db40" target="_blank" class="link-item">Treasure Chest - Short Stories</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2><span class="icon">🧬</span> Biology</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/ccc27d91-2604-43d5-8892-911710c42944" target="_blank" class="link-item">Endocrine System</a>
-          <a href="https://notebooklm.google.com/notebook/0fdbab93-66b9-45e1-adb9-e3ce2822c2fa" target="_blank" class="link-item">Chemical Coordination in Plants</a>
-          <a href="https://notebooklm.google.com/notebook/92b2f911-a2ad-444c-9466-8e66eaf75d08" target="_blank" class="link-item">Transpiration</a>
-          <a href="https://notebooklm.google.com/notebook/450ff26f-689d-4a12-8913-757b52553550" target="_blank" class="link-item">Photosynthesis</a>
-          <a href="https://notebooklm.google.com/notebook/06ff423d-52cd-49c2-a007-140b1c614733" target="_blank" class="link-item">Evolution</a>
-          <a href="https://notebooklm.google.com/notebook/f8173a27-ca57-4564-948a-2677f1af3893" target="_blank" class="link-item">Pollution - Sources and Effects</a>
-          <a href="https://notebooklm.google.com/notebook/a2bbccf4-b485-4b62-a5d6-b7c6e5c9a3f0" target="_blank" class="link-item">Absorption by Roots</a>
-          <a href="https://notebooklm.google.com/notebook/e48e37fa-7b90-4ca9-ba07-c844cf52869f" target="_blank" class="link-item">Cell Cycle and Division</a>
-          <a href="https://notebooklm.google.com/notebook/c0bdf323-afa4-412f-ba24-b6679f805b35" target="_blank" class="link-item">Chromosomes</a>
-          <a href="https://notebooklm.google.com/notebook/c172d5d8-bfa3-4e95-98e5-413ecd44b8a5" target="_blank" class="link-item">Genetics</a>
-          <a href="https://notebooklm.google.com/notebook/bb81cf0e-c163-4b12-aca8-29bc66bd63e7" target="_blank" class="link-item">Circulatory System</a>
-          <a href="https://notebooklm.google.com/notebook/28f5e994-2287-4924-abdf-6a26b91230c9" target="_blank" class="link-item">Excretory System</a>
-          <a href="https://notebooklm.google.com/notebook/8b3a0884-6d77-4064-81ad-5f03b6d1e7b5" target="_blank" class="link-item">Nervous System</a>
-          <a href="https://notebooklm.google.com/notebook/7d7074bc-c5fc-4f31-a303-96073ea3fd7c" target="_blank" class="link-item">Sense Organs</a>
-          <a href="https://notebooklm.google.com/notebook/2d73b085-af7b-4095-8ebc-4c6d45a34587" target="_blank" class="link-item">Reproductive System</a>
-          <a href="https://notebooklm.google.com/notebook/1a49286d-0f4f-4931-82c4-14dcde59ba2f" target="_blank" class="link-item">Population and its Problems</a>
-          
-          
-        </div>
-      </div>
-
-      <div class="card">
-        <h2><span class="icon">🧪</span> Chemistry</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/52ffed4d-cfee-4168-9a02-a0d3a8561c7c" target="_blank" class="link-item">Periodic Properties and Variations</a>
-          <a href="https://notebooklm.google.com/notebook/b6086cb8-2d3c-4184-9e3b-d62219dddf82" target="_blank" class="link-item">Analytical Chemistry</a>
-          <a href="https://notebooklm.google.com/notebook/905e6e23-f571-4362-b69f-15293d723e31" target="_blank" class="link-item">Acids, Bases and Salts</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2><span class="icon">⚡</span> Physics</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/a2b0d58b-f7b1-482b-885a-39fd324ef652" target="_blank" class="link-item">Light</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2><span class="icon">🏛️</span> History & Civics</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/df0d9c40-9254-41a4-9cf3-7e00cdb3cf58" target="_blank" class="link-item">Gandhian Era</a>
-          <a href="https://notebooklm.google.com/notebook/bac1e8e2-09c9-4e5d-8a19-c8e96a005c03" target="_blank" class="link-item">Civics</a>
-          <a href="https://notebooklm.google.com/notebook/9ce14ce2-4c5b-429d-832e-ea4b0b8cf078" target="_blank" class="link-item">History and Civics PYQ</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2><span class="icon">🌍</span> Geography</h2>
-        <div class="links">
-          <a href="https://notebooklm.google.com/notebook/4c98bcaa-5094-4a36-96a4-55c31635cc54" target="_blank" class="link-item">Mineral Resources in India</a>
-          <a href="https://notebooklm.google.com/notebook/2cbd8993-15fb-4fcc-82a7-a802aa8fa5a2" target="_blank" class="link-item">Water Resources and Irrigation</a>
-          <a href="https://notebooklm.google.com/notebook/e68f4579-bf76-4a70-96ee-774d64c57cb8" target="_blank" class="link-item">Natural Vegetation</a>
-          <a href="https://notebooklm.google.com/notebook/da1989e8-3b3a-4e90-a3fb-587af23e1291" target="_blank" class="link-item">Soil Resources</a>
-          <a href="https://notebooklm.google.com/notebook/84d28523-96b7-4230-b4e4-e16e8657b589" target="_blank" class="link-item">Agriculture</a>
-          <a href="https://notebooklm.google.com/notebook/0f5346b2-3e64-4c63-8293-936900ec1454" target="_blank" class="link-item">Conventional and Non-Conventional Sources of Energy</a>
-          <a href="https://notebooklm.google.com/notebook/8124f1cc-8f5d-46a5-b1b8-947df6b17651" target="_blank" class="link-item">Climate of India</a>
-          <a href="https://notebooklm.google.com/notebook/250bf79d-d5ab-4648-966f-14d782ccbc6e" target="_blank" class="link-item">Industries in India</a>
-          <a href="https://notebooklm.google.com/notebook/4ec1b847-ede8-4d98-aa7d-175a5342da0b" target="_blank" class="link-item">Transport</a>
-        </div>
-      </div>
+    <div class="search-container">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+      <input 
+        type="search" 
+        class="search-input" 
+        id="searchInput" 
+        placeholder="Search topics or subjects..."
+        aria-label="Search through study materials"
+      >
     </div>
 
-    <div class="about">
+    <main id="main-content" class="grid">
+      <section class="card" data-subject="english literature">
+        <h2><span class="icon" aria-hidden="true">📚</span> English Literature</h2>
+        <nav class="links" aria-label="English Literature topics">
+          <a href="https://notebooklm.google.com/notebook/d9400a02-c0c1-419c-83b3-a9b36eb794ba" target="_blank" rel="noopener" class="link-item">Julius Caesar</a>
+          <a href="https://notebooklm.google.com/notebook/64adfff4-a931-4dfb-b647-b2f0a4efc7f9" target="_blank" rel="noopener" class="link-item">Treasure Chest - Short Poems</a>
+          <a href="https://notebooklm.google.com/notebook/7f0d0e47-a1cf-484d-9609-1aba55c5db40" target="_blank" rel="noopener" class="link-item">Treasure Chest - Short Stories</a>
+        </nav>
+      </section>
+
+      <section class="card" data-subject="biology">
+        <h2><span class="icon" aria-hidden="true">🧬</span> Biology</h2>
+        <nav class="links" aria-label="Biology topics">
+          <a href="https://notebooklm.google.com/notebook/ccc27d91-2604-43d5-8892-911710c42944" target="_blank" rel="noopener" class="link-item">Endocrine System</a>
+          <a href="https://notebooklm.google.com/notebook/0fdbab93-66b9-45e1-adb9-e3ce2822c2fa" target="_blank" rel="noopener" class="link-item">Chemical Coordination in Plants</a>
+          <a href="https://notebooklm.google.com/notebook/92b2f911-a2ad-444c-9466-8e66eaf75d08" target="_blank" rel="noopener" class="link-item">Transpiration</a>
+          <a href="https://notebooklm.google.com/notebook/450ff26f-689d-4a12-8913-757b52553550" target="_blank" rel="noopener" class="link-item">Photosynthesis</a>
+          <a href="https://notebooklm.google.com/notebook/06ff423d-52cd-49c2-a007-140b1c614733" target="_blank" rel="noopener" class="link-item">Evolution</a>
+          <a href="https://notebooklm.google.com/notebook/f8173a27-ca57-4564-948a-2677f1af3893" target="_blank" rel="noopener" class="link-item">Pollution - Sources and Effects</a>
+          <a href="https://notebooklm.google.com/notebook/a2bbccf4-b485-4b62-a5d6-b7c6e5c9a3f0" target="_blank" rel="noopener" class="link-item">Absorption by Roots</a>
+          <a href="https://notebooklm.google.com/notebook/e48e37fa-7b90-4ca9-ba07-c844cf52869f" target="_blank" rel="noopener" class="link-item">Cell Cycle and Division</a>
+          <a href="https://notebooklm.google.com/notebook/c0bdf323-afa4-412f-ba24-b6679f805b35" target="_blank" rel="noopener" class="link-item">Chromosomes</a>
+          <a href="https://notebooklm.google.com/notebook/c172d5d8-bfa3-4e95-98e5-413ecd44b8a5" target="_blank" rel="noopener" class="link-item">Genetics</a>
+          <a href="https://notebooklm.google.com/notebook/bb81cf0e-c163-4b12-aca8-29bc66bd63e7" target="_blank" rel="noopener" class="link-item">Circulatory System</a>
+          <a href="https://notebooklm.google.com/notebook/28f5e994-2287-4924-abdf-6a26b91230c9" target="_blank" rel="noopener" class="link-item">Excretory System</a>
+          <a href="https://notebooklm.google.com/notebook/8b3a0884-6d77-4064-81ad-5f03b6d1e7b5" target="_blank" rel="noopener" class="link-item">Nervous System</a>
+          <a href="https://notebooklm.google.com/notebook/7d7074bc-c5fc-4f31-a303-96073ea3fd7c" target="_blank" rel="noopener" class="link-item">Sense Organs</a>
+          <a href="https://notebooklm.google.com/notebook/2d73b085-af7b-4095-8ebc-4c6d45a34587" target="_blank" rel="noopener" class="link-item">Reproductive System</a>
+          <a href="https://notebooklm.google.com/notebook/1a49286d-0f4f-4931-82c4-14dcde59ba2f" target="_blank" rel="noopener" class="link-item">Population and its Problems</a>
+        </nav>
+      </section>
+
+      <section class="card" data-subject="chemistry">
+        <h2><span class="icon" aria-hidden="true">🧪</span> Chemistry</h2>
+        <nav class="links" aria-label="Chemistry topics">
+          <a href="https://notebooklm.google.com/notebook/52ffed4d-cfee-4168-9a02-a0d3a8561c7c" target="_blank" rel="noopener" class="link-item">Periodic Properties and Variations</a>
+          <a href="https://notebooklm.google.com/notebook/b6086cb8-2d3c-4184-9e3b-d62219dddf82" target="_blank" rel="noopener" class="link-item">Analytical Chemistry</a>
+          <a href="https://notebooklm.google.com/notebook/905e6e23-f571-4362-b69f-15293d723e31" target="_blank" rel="noopener" class="link-item">Acids, Bases and Salts</a>
+        </nav>
+      </section>
+
+      <section class="card" data-subject="physics">
+        <h2><span class="icon" aria-hidden="true">⚡</span> Physics</h2>
+        <nav class="links" aria-label="Physics topics">
+          <a href="https://notebooklm.google.com/notebook/a2b0d58b-f7b1-482b-885a-39fd324ef652" target="_blank" rel="noopener" class="link-item">Light</a>
+        </nav>
+      </section>
+
+      <section class="card" data-subject="history civics">
+        <h2><span class="icon" aria-hidden="true">🏛️</span> History & Civics</h2>
+        <nav class="links" aria-label="History and Civics topics">
+          <a href="https://notebooklm.google.com/notebook/df0d9c40-9254-41a4-9cf3-7e00cdb3cf58" target="_blank" rel="noopener" class="link-item">Gandhian Era</a>
+          <a href="https://notebooklm.google.com/notebook/bac1e8e2-09c9-4e5d-8a19-c8e96a005c03" target="_blank" rel="noopener" class="link-item">Civics</a>
+          <a href="https://notebooklm.google.com/notebook/9ce14ce2-4c5b-429d-832e-ea4b0b8cf078" target="_blank" rel="noopener" class="link-item">History and Civics PYQ</a>
+        </nav>
+      </section>
+
+      <section class="card" data-subject="geography">
+        <h2><span class="icon" aria-hidden="true">🌍</span> Geography</h2>
+        <nav class="links" aria-label="Geography topics">
+          <a href="https://notebooklm.google.com/notebook/4c98bcaa-5094-4a36-96a4-55c31635cc54" target="_blank" rel="noopener" class="link-item">Mineral Resources in India</a>
+          <a href="https://notebooklm.google.com/notebook/2cbd8993-15fb-4fcc-82a7-a802aa8fa5a2" target="_blank" rel="noopener" class="link-item">Water Resources and Irrigation</a>
+          <a href="https://notebooklm.google.com/notebook/e68f4579-bf76-4a70-96ee-774d64c57cb8" target="_blank" rel="noopener" class="link-item">Natural Vegetation</a>
+          <a href="https://notebooklm.google.com/notebook/da1989e8-3b3a-4e90-a3fb-587af23e1291" target="_blank" rel="noopener" class="link-item">Soil Resources</a>
+          <a href="https://notebooklm.google.com/notebook/84d28523-96b7-4230-b4e4-e16e8657b589" target="_blank" rel="noopener" class="link-item">Agriculture</a>
+          <a href="https://notebooklm.google.com/notebook/0f5346b2-3e64-4c63-8293-936900ec1454" target="_blank" rel="noopener" class="link-item">Conventional and Non-Conventional Sources of Energy</a>
+          <a href="https://notebooklm.google.com/notebook/8124f1cc-8f5d-46a5-b1b8-947df6b17651" target="_blank" rel="noopener" class="link-item">Climate of India</a>
+          <a href="https://notebooklm.google.com/notebook/250bf79d-d5ab-4648-966f-14d782ccbc6e" target="_blank" rel="noopener" class="link-item">Industries in India</a>
+          <a href="https://notebooklm.google.com/notebook/4ec1b847-ede8-4d98-aa7d-175a5342da0b" target="_blank" rel="noopener" class="link-item">Transport</a>
+        </nav>
+      </section>
+    </main>
+
+    <aside class="about">
       <h2>About Devriyans</h2>
       <p>These ICSE notes are curated and organized by <strong>Devriyans</strong>, a duo of two passionate friends — Sriyans and Devashish — from Class 10 ICSE. With a shared love for learning, innovation, and clarity, they've built this platform to make studying smarter, interactive, and enjoyable for every student. 🎓</p>
-    </div>
+    </aside>
   </div>
 
   <footer>
@@ -567,7 +561,7 @@
   </footer>
 
   <script>
-    // --- THEME TOGGLE SCRIPT ---
+    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const themeText = document.getElementById('themeText');
@@ -577,91 +571,75 @@
     if (savedTheme === 'light') {
       body.classList.add('light-mode');
       themeIcon.textContent = '☀️';
-      themeText.textContent = 'Dark';
-    } else {
-      themeIcon.textContent = '🌙';
-      themeText.textContent = 'Light';
+      themeText.textContent = 'Dark Mode';
     }
 
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('light-mode');
       const isLight = body.classList.contains('light-mode');
       themeIcon.textContent = isLight ? '☀️' : '🌙';
-      themeText.textContent = isLight ? 'Dark' : 'Light';
+      themeText.textContent = isLight ? 'Dark Mode' : 'Light Mode';
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
-    // --- NEW: SCRIPT FOR DYNAMIC ELEMENTS ---
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- CURSOR FOLLOWER ---
-        const follower = document.querySelector('.cursor-follower');
-        window.addEventListener('mousemove', e => {
-            // Use transform for smoother animation
-            follower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        });
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
 
-        // --- TYPING ANIMATION ---
-        const typingText = document.getElementById('typing-text');
-        const phrases = [
-            "Your ultimate study companion ✨",
-            "Curated by Devashish & Sriyans",
-            "Ace your ICSE exams! 🚀"
-        ];
-        let phraseIndex = 0;
-        let letterIndex = 0;
-        let isDeleting = false;
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      
+      cards.forEach(card => {
+        const subject = card.getAttribute('data-subject');
+        const links = card.querySelectorAll('.link-item');
+        let hasMatch = false;
 
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, letterIndex - 1);
-                letterIndex--;
+        // Check if subject matches
+        if (subject.includes(searchTerm)) {
+          hasMatch = true;
+          links.forEach(link => link.classList.remove('hidden'));
+        } else {
+          // Check individual links
+          links.forEach(link => {
+            const linkText = link.textContent.toLowerCase();
+            if (linkText.includes(searchTerm)) {
+              hasMatch = true;
+              link.classList.remove('hidden');
             } else {
-                typingText.textContent = currentPhrase.substring(0, letterIndex + 1);
-                letterIndex++;
+              link.classList.add('hidden');
             }
-
-            let typeSpeed = 150;
-            if(isDeleting) typeSpeed /= 2;
-
-            if (!isDeleting && letterIndex === currentPhrase.length) {
-                typeSpeed = 2000; // Pause at end of word
-                isDeleting = true;
-            } else if (isDeleting && letterIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500; // Pause before starting new word
-            }
-
-            setTimeout(type, typeSpeed);
+          });
         }
-        type();
 
-        // --- 3D TILT EFFECT ON CARDS ---
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = card.getBoundingClientRect();
-                const x = e.clientX - left - width / 2;
-                const y = e.clientY - top - height / 2;
+        // Show/hide card based on matches
+        if (searchTerm === '' || hasMatch) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
 
-                const rotateY = (x / width) * 20; // Max tilt degree
-                const rotateX = -(y / height) * 20;
+    // Keyboard navigation improvements
+    document.addEventListener('keydown', (e) => {
+      // Allow ESC to clear search
+      if (e.key === 'Escape' && document.activeElement === searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+      }
+    });
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            });
-        });
+    // Announce search results to screen readers
+    searchInput.addEventListener('input', () => {
+      const visibleCards = document.querySelectorAll('.card:not(.hidden)');
+      const announcement = document.createElement('div');
+      announcement.setAttribute('role', 'status');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.className = 'sr-only';
+      announcement.textContent = `${visibleCards.length} subjects found`;
+      document.body.appendChild(announcement);
+      setTimeout(() => announcement.remove(), 1000);
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
